@@ -48,7 +48,7 @@ jobs:
       - name: "UI Tests - Chrome"
         uses: cypress-io/github-action@v2
         with:
-          command-prefix: 'percy exec -- npx'
+          command-prefix: "percy exec -- npx"
           start: yarn start:ci
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
@@ -158,10 +158,11 @@ jobs:
     container:
       image: cypress/browsers:node16.13.2-chrome100-ff98
       options: --user 1001
+    steps:
       - name: "API Tests"
         uses: cypress-io/github-action@v2
         with:
-          command-prefix: 'percy exec -- npx'
+          command-prefix: "percy exec -- npx"
           start: yarn start:ci
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
@@ -172,4 +173,3 @@ jobs:
           # determine the unique run id necessary to re-run the checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-
