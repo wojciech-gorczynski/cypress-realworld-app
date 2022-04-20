@@ -8,7 +8,7 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: cypress/browsers:node16.13.2-chrome100-ff98
       options: --user 1001
     steps:
@@ -19,11 +19,6 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           runTests: false
-      - run: yarn cypress info
-      - run: node -p 'os.cpus()'
-      - run: yarn types
-      - run: yarn lint
-      - run: yarn test:unit:ci
       - run: yarn build:ci
 
       - name: Save build folder
@@ -36,7 +31,7 @@ jobs:
   ui-chrome-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: cypress/browsers:node16.13.2-chrome100-ff98
       options: --user 1001
     needs: install
@@ -68,7 +63,7 @@ jobs:
   ui-chrome-mobile-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: cypress/browsers:node16.13.2-chrome100-ff98
       options: --user 1001
     needs: install
@@ -156,4 +151,3 @@ jobs:
           # Recommended: pass the GitHub token lets this action correctly
           # determine the unique run id necessary to re-run the checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
